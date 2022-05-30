@@ -15,22 +15,6 @@ InceptionResNet= InceptionResNetV2(include_top="False", weights=None, input_shap
 InceptionResNet.summary()
 #---------------------------------------------------------------------------------------------
 
-
-# Store the fully connected layers
-
-avg_pool = ResNet.layers[-2]
-predictions = ResNet.layers[-1]
-
-# Create the dropout layers
-dropout = Dropout(0.50)
-# Reconnect the layers
-x = dropout(avg_pool.output)
-predictors = Dense(7, activation='softmax', name='predictions')(x)
-
-# Create a new model
-model2 = Model(ResNet.inputs, outputs=predictors)
-model2.summary()
-
 #----------------------------------------InceptionResNet--------------------------------------------------
 
 avg_pool = InceptionResNet.layers[-2]
